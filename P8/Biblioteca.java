@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Biblioteca {
     private String nome;
-    ArrayList<String> livros;
+    private ArrayList<String> livros;
 
     public Biblioteca() {
         nome = "";
