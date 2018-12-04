@@ -21,25 +21,25 @@ public class Conta {
         this.Titulares = Titulares;
         this.dataC = LocalDate.now(ZoneId.of("Portugal"));
         this.saldo = saldo;
-        acao = new ArrayList<>();
-        data = new ArrayList<>();
-        montante = new ArrayList<>();
+        acao = new ArrayList<String>();
+        data = new ArrayList<LocalDate>();
+        montante = new ArrayList<Integer>();
     }
 
     public int getNumero() {
-        return numero;
+        return this.numero;
     }
 
     public ArrayList<String> getTitulares() {
-        return Titulares;
+        return this.Titulares;
     }
 
     public LocalDate getData() {
-        return dataC;
+        return this.dataC;
     }
 
     public int getSaldo() {
-        return saldo;
+        return this.saldo;
     }
 
     public void setNumero(int numero) {
@@ -77,5 +77,9 @@ public class Conta {
         for (LocalDate d : data) {
             this.data.add(d);
         }
+    }
+
+    public ArrayList<> getUltimosCincoMovimentos() {
+
     }
 }
