@@ -6,15 +6,16 @@ import java.util.ArrayList;
  * Conta
  */
 public class Conta {
-
+    // O que é final?
     protected final int numero;
     protected ArrayList<String> titulares;
     protected final LocalDate dataCriacao;
     protected double saldo;
     protected final ArrayList<Movimento> movimentos;
+    private static int nContas = 0;
 
-    public Conta(int numero, ArrayList<String> titulares, double saldo) {
-        this.numero = numero;
+    public Conta(ArrayList<String> titulares, double saldo) {
+        this.numero = (++nContas);
         this.titulares = titulares;
         this.dataCriacao = LocalDate.now(ZoneId.of("Portugal"));
         this.saldo = saldo;
@@ -38,15 +39,16 @@ public class Conta {
     }
 
     public void setTitulares(ArrayList<String> titulares) {
+        // Nao devia fazer clone?
         this.titulares = titulares;
     }
 
     public void novoMovimento(String descricao, double montante) {
-        if (montante < 0 && this.saldo - montante > 0) {
-            this.movimentos.add(new Movimento(descricao, montante, LocalDate.now(ZoneId.of("Portugal"))));
+        if (this.saldo + montante > 0) {
+            this.movimentos.add(new Movimento(descricao, montante));
             this.saldo += montante;
         } else {
-            System.out.println("Salto insuficiente!");
+            System.out.println("Saldo insuficiente!");
         }
     }
 

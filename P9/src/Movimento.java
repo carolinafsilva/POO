@@ -22,10 +22,14 @@ public class Movimento {
         return this.montante;
     }
 
-    public Movimento(String descricao, double montante, LocalDate date) {
+    public Movimento(String descricao, double montante) {
         this.descricao = descricao;
         this.montante = montante;
-        this.date = date;
+        this.date = LocalDate.now(ZoneId.of("Portugal"));
+    }
+
+    public String toString() {
+        return (descricao + " " + montante + " " + date + "\n");
     }
 
 }

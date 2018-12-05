@@ -13,7 +13,7 @@ public class ContaAPrazo extends Conta {
         super.saldo += juros;
     }
 
-    public ContaAPrazo(int numero, ArrayList<String> Titulares, int saldo) {
-        super(numero, Titulares, saldo);
+    public ContaAPrazo(ArrayList<String> Titulares, int saldo) {
+        super(Titulares, saldo);
     }
 }

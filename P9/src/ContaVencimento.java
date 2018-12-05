@@ -26,18 +26,18 @@ public class ContaVencimento extends Conta {
         this.NIB = NIB;
     }
 
-    public ContaVencimento(int numero, ArrayList<String> Titulares, int saldo, double limite, int NIB) {
-        super(numero, Titulares, saldo);
+    public ContaVencimento(ArrayList<String> Titulares, int saldo, double limite, int NIB) {
+        super(Titulares, saldo);
         this.limite = limite;
         this.NIB = NIB;
     }
 
     public void novoMovimento(String descricao, double montante) {
-        if (montante < 0 && this.saldo - montante > limite) {
-            this.movimentos.add(new Movimento(descricao, montante, LocalDate.now(ZoneId.of("Portugal"))));
+        if (this.saldo + montante > limite) {
+            this.movimentos.add(new Movimento(descricao, montante));
             this.saldo += montante;
         } else {
-            System.out.println("Salto insuficiente!");
+            System.out.println("Saldo insuficiente!");
         }
     }
 }

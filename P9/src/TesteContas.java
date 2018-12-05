@@ -6,36 +6,71 @@ import java.util.ArrayList;
 public class TesteContas {
 
     public static void main(String[] args) {
+        int n, saldo, NIB;
+        Movimento m;
+        ArrayList<Conta> contas = new ArrayList<Conta>();
 
         ArrayList<String> titulares1 = new ArrayList<String>();
-        titulares1.add("João");
-        titulares1.add("Carolina");
+        System.out.println("\nCONTA Nº0\nConta Vencimento\n\nIntroduza o número de titulares da conta:");
+        n = Ler.umInt();
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nIntroduza o nome de um dos titulares:");
+            titulares1.add(Ler.umaString());
+        }
+        System.out.println("Introduza o NIB da conta vencimento:");
+        NIB = Ler.umInt();
+        System.out.println("Defina o valor com que deseja abrir a conta:");
+        saldo = Ler.umInt();
+
+        contas.add(new ContaVencimento(titulares1, saldo, -250, NIB)); // $$$
 
         ArrayList<String> titulares2 = new ArrayList<String>();
-        titulares2.add("Sushi");
-        titulares2.add("Piaf");
-        titulares2.add("Nunca me lembro do nome do teu gato");
+        System.out.println("\nCONTA Nº1\nConta Normal\n\nIntroduza o número de titulares da conta:");
+        n = Ler.umInt();
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nIntroduza o nome de um dos titulares:");
+            titulares2.add(Ler.umaString());
+        }
+        System.out.println("Defina o valor com que deseja abrir a conta:");
+        saldo = Ler.umInt();
 
-        ArrayList<Conta> contas = new ArrayList<Conta>();
-        contas.add(new ContaVencimento(0, titulares1, 1000000000, -2500, 123456789)); // $$$
-        contas.add(new ContaAPrazo(1, titulares2, 2000));
+        contas.add(new Conta(titulares2, saldo));
+
+        ArrayList<String> titulares3 = new ArrayList<String>();
+        System.out.println("\nCONTA Nº2\nConta a Prazo\n\nIntroduza o número de titulares da conta:");
+        n = Ler.umInt();
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nIntroduza o nome de um dos titulares:");
+            titulares3.add(Ler.umaString());
+        }
+        System.out.println("Defina o valor com que deseja abrir a conta:");
+        saldo = Ler.umInt();
+
+        contas.add(new ContaAPrazo(titulares2, saldo));
 
         for (Conta c : contas) {
-
-            c.novoMovimento("Comprar gomas", -2);
-            c.novoMovimento("Comprar uma mansao", -3000000);
-            c.novoMovimento("Pagar propinas", -1000);
-            c.novoMovimento("Receber ordenado", 25000000);
-            c.novoMovimento("Construir um free shelter for homeless animals", -25000000);
-
-            System.out.println(c.getUltimosMovimentos(3));
-            System.out.println(c.getUltimosMovimentos(4));
-            System.out.println(c.getUltimosMovimentos(10));
+            System.out.println("\n\nConta " + c.getNumero() + ":\nSaldo Inicial: " + c.getSaldo());
+            m = new Movimento("Despesas de manutenção", -2);
+            System.out.println("Movimento:\n" + m);
+            c.novoMovimento(m.getDescricao(), m.getMontante());
+            m = new Movimento("Compra de imóvel", -300000);
+            System.out.println("Movimento:\n" + m);
+            c.novoMovimento(m.getDescricao(), m.getMontante());
+            m = new Movimento("Pagamento de Propinas", -1000);
+            System.out.println("Movimento:\n" + m);
+            c.novoMovimento(m.getDescricao(), m.getMontante());
+            m = new Movimento("Depósito de ordenado", 25000000);
+            System.out.println("Movimento:\n" + m);
+            m = new Movimento("Investimento", -10000000);
+            System.out.println("Movimento:\n" + m);
+            c.novoMovimento(m.getDescricao(), m.getMontante());
+            System.out.println(c.getUltimosMovimentos(5));
 
             if (c instanceof ContaAPrazo) {
                 ContaAPrazo nc = (ContaAPrazo) c;
                 nc.addJuros();
             }
+            System.out.println("Saldo Final: " + c.getSaldo());
         }
 
         // meh não me apetece testar mais sorry (os testes tambem não estão nada
