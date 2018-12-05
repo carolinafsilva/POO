@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * Conta
  */
 public class Conta {
-    // O que é final?
     protected final int numero;
     protected ArrayList<String> titulares;
     protected final LocalDate dataCriacao;
@@ -39,8 +38,7 @@ public class Conta {
     }
 
     public void setTitulares(ArrayList<String> titulares) {
-        // Nao devia fazer clone?
-        this.titulares = titulares;
+        this.titulares = titulares.clone();
     }
 
     public void novoMovimento(String descricao, double montante) {

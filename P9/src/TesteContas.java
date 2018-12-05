@@ -73,8 +73,5 @@ public class TesteContas {
             System.out.println("Saldo Final: " + c.getSaldo());
         }
 
-        // meh não me apetece testar mais sorry (os testes tambem não estão nada
-        // visuais)
-
     }
 }
