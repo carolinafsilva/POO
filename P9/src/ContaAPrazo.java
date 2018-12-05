@@ -1,46 +1,19 @@
-
 import java.time.LocalDate;
 import java.time.ZoneId;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 
 /**
- *
- * @author carolinasilva
+ * ContaAPrazo
  */
-public class ContaAPrazo {
-    private float juros;
-    private int prazo; // insto não devia ser uma data?
+public class ContaAPrazo extends Conta {
 
-    public ContaAPrazo(float juros, int prazo) {
-        this.juros = juros;
-        this.prazo = prazo;
+    public void addJuros() {
+        double juros = (ChronoUnit.DAYS.between(super.dataCriacao, LocalDate.now())) * 0.01;
+        super.saldo += juros;
     }
 
-    public float getJuros() {
-        return juros;
-    }
-
-    public int getPrazo() {
-        return prazo;
-    }
-
-    public void setJuros(float juros) {
-        this.juros = juros;
-    }
-
-    public void setPrazo(int prazo) {
-        this.prazo = prazo;
-    }
-
-    public void novoMovimento(String acao, int montante) {
-        LocalDate agora = LocalDate.now(ZoneId.of("Portugal"));
-        this.acao.add(acao);
-        montante.add(montante); // wut? did you mean su ahahahah, nao faço ideia o que estava a fazer xD
-        super.data.add(agora);
+    public ContaAPrazo(int numero, ArrayList<String> Titulares, int saldo) {
+        super(numero, Titulares, saldo);
     }
 }
